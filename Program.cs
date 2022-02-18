@@ -1,15 +1,14 @@
 ﻿//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Shawn Wu, TINFO-200A,Programming II for ITS
-// GuessTheNumber assignment - Guess-the-Number Game program.
+// L5life assignment - John Conway's Game of Life program.
 // This assignment has the following purpose: It will show the use of 
-// random generator , as well as demostrate the use of nested for loops
+// two dimensional arrays , as well as demostrate the use of nested for loops
 ///////////////////////////////////////////////////////////////////////////////////////////
 // Change History
 // Date         Developer        Description
 // 2022-02-05   ShawnW           Some description having to do with the creation and use of this file.
-// 2022-02-05   ShawnW           Creation of game objects.
-// 2022-02-05   ShawnW           Created nested loops.
-// 2022-02-05   ShawnW           Created different responses.
+// 2022-02-05   ShawnW           Added game description.
+// 2022-02-05   ShawnW           https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#:~:text=The%20Game%20of%20Life%2C%20also,state%2C%20requiring%20no%20further%20input.
 
 
 using System;
@@ -18,70 +17,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GuessTheNumber
+namespace GLife
 {
     internal class Program
     {
-
-        // Main
         static void Main(string[] args)
         {
-Console.WriteLine(@"
+            Console.WriteLine(@"
 *****************************************************
-       Welcome to the Guess the Number program!
+        Welcome to the Game Of Life program!
 *****************************************************
-This app will generate a number between 1 and 1000
-and your job is to guess the correct number. 
+It is a zero-player game, meaning that its evolution 
+is determined by its initial state, requiring no further 
+input. One interacts with the Game of Life by creating an 
+initial configuration and observing how it evolves. 
+
+Rule - The universe of the Game of Life is an infinite, 
+two-dimensional orthogonal grid of square cells, 
+each of which is in one of two possible states, live or dead. 
 ");
-            //  Random number generator
 
-            Random random = new Random();
-
-            // Between 1 and 1000
-
-            int secretNumber = (random.Next()%1000) + 1;
-
-            int userGuess = 0;
-
-            // While loop to keep guess the number
-            
-            while(userGuess != secretNumber)
-            {
-                Console.Write("\nGuess a number between 1 and 1000: ");
-                userGuess = int.Parse(Console.ReadLine());
-
-                if (userGuess == secretNumber)
-                {
-                    Console.WriteLine("Congratulations. You guessed the number!");
-
-                    Console.Write("\nDo you want to play again? (y/n)");
-                    string ch = Console.ReadLine().ToLower();
-                    
-                    // Continue the game
-                    
-                    if (ch.Equals("y"))
-
-                    {
-                        secretNumber = (random.Next() % 1000) + 1;
-                        userGuess = 0;
-                    }
-                }
-                // Different responses based on the guess
-                 
-                else if (userGuess < secretNumber)
-                {
-                    Console.WriteLine("Too low. Try again.");
-                }
-                else
-                {
-                    Console.WriteLine("Too high. Try again");
-                }
-
-                
-            }
-
-            Console.ReadKey();
-
+            // want to be able to create a game obj and call the ctor
+            // to kick off the simulation
+            Game game = new Game();
+            game.PlayTheGame();
+         
         }
     }
 }
